@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>wfasyncext</id>
-    <version>1.0.3</version>
+    <version>1.0.5</version>
     <title>Windows Forms Async/Cross Thread Extension</title>
     <authors>rkttu.com</authors>
     <owners>rkttu.com</owners>
