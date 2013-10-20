@@ -45237,4 +45237,339 @@ namespace System.Windows.Forms
                 callback.Invoke(c, propertyName, value);
         }
     }
+
+    partial class WFAsyncExtensions
+    {
+        //public static DialogResult Show(this Control owner, string text);
+        private static readonly Func<Control, string, DialogResult> showMessageBox1Internal =
+            MessageBox.Show;
+        public static DialogResult ShowMessageBox(this Control owner, string text)
+        {
+            if (owner == null)
+                throw new ArgumentNullException("owner");
+            if (owner.InvokeRequired)
+                return (DialogResult)owner.Invoke(showMessageBox1Internal, owner, text);
+            else
+                return showMessageBox1Internal.Invoke(owner, text);
+        }
+        private static readonly Func<Control, string, DialogResult> showMessageBox1Callback =
+            ShowMessageBox;
+        public static IAsyncResult BeginShowMessageBox1(this Control owner, string text, AsyncCallback callback, object state)
+        {
+            return showMessageBox1Callback.BeginInvoke(owner, text, callback, state);
+        }
+        public static DialogResult EndShowMessageBox1(this Control owner, IAsyncResult result)
+        {
+            return EndShowMessageBox1(result);
+        }
+        public static DialogResult EndShowMessageBox1(IAsyncResult result)
+        {
+            return showMessageBox1Callback.EndInvoke(result);
+        }
+        public static Task<DialogResult> ShowMessageBoxAsync(this Control owner, string text)
+        {
+            return Task<DialogResult>.Factory.FromAsync<Control, string>(
+                (Func<Control, string, AsyncCallback, object, IAsyncResult>)BeginShowMessageBox1,
+                (Func<IAsyncResult, DialogResult>)EndShowMessageBox1,
+                owner, text, null);
+        }
+
+        //public static DialogResult Show(this Control owner, string text, string caption);
+        private static readonly Func<Control, string, string, DialogResult> showMessageBox2Internal =
+            MessageBox.Show;
+        public static DialogResult ShowMessageBox(this Control owner, string text, string caption)
+        {
+            if (owner == null)
+                throw new ArgumentNullException("owner");
+            if (owner.InvokeRequired)
+                return (DialogResult)owner.Invoke(showMessageBox2Internal, owner, text, caption);
+            else
+                return showMessageBox2Internal.Invoke(owner, text, caption);
+        }
+        private static readonly Func<Control, string, string, DialogResult> showMessageBox2Callback =
+            ShowMessageBox;
+        public static IAsyncResult BeginShowMessageBox2(this Control owner, string text, string caption, AsyncCallback callback, object state)
+        {
+            return showMessageBox2Callback.BeginInvoke(owner, text, caption, callback, state);
+        }
+        public static DialogResult EndShowMessageBox2(this Control owner, IAsyncResult result)
+        {
+            return EndShowMessageBox2(result);
+        }
+        public static DialogResult EndShowMessageBox2(IAsyncResult result)
+        {
+            return showMessageBox2Callback.EndInvoke(result);
+        }
+        public static Task<DialogResult> ShowMessageBoxAsync(this Control owner, string text, string caption)
+        {
+            return Task<DialogResult>.Factory.FromAsync<Control, string, string>(
+                (Func<Control, string, string, AsyncCallback, object, IAsyncResult>)BeginShowMessageBox2,
+                (Func<IAsyncResult, DialogResult>)EndShowMessageBox2,
+                owner, text, caption, null);
+        }
+
+        //public static DialogResult Show(this Control owner, string text, string caption, MessageBoxButtons buttons);
+        private static readonly Func<Control, string, string, MessageBoxButtons, DialogResult> showMessageBox3Internal =
+            MessageBox.Show;
+        public static DialogResult ShowMessageBox(this Control owner, string text, string caption, MessageBoxButtons buttons)
+        {
+            if (owner == null)
+                throw new ArgumentNullException("owner");
+            if (owner.InvokeRequired)
+                return (DialogResult)owner.Invoke(showMessageBox3Internal, owner, text, caption, buttons);
+            else
+                return showMessageBox3Internal.Invoke(owner, text, caption, buttons);
+        }
+        private static readonly Func<Control, string, string, MessageBoxButtons, DialogResult> showMessageBox3Callback =
+            ShowMessageBox;
+        public static IAsyncResult BeginShowMessageBox3(this Control owner, string text, string caption, MessageBoxButtons buttons, AsyncCallback callback, object state)
+        {
+            return showMessageBox3Callback.BeginInvoke(owner, text, caption, buttons, callback, state);
+        }
+        public static DialogResult EndShowMessageBox3(this Control owner, IAsyncResult result)
+        {
+            return EndShowMessageBox3(result);
+        }
+        public static DialogResult EndShowMessageBox3(IAsyncResult result)
+        {
+            return showMessageBox3Callback.EndInvoke(result);
+        }
+        public static Task<DialogResult> ShowMessageBoxAsync(this Control owner, string text, string caption, MessageBoxButtons buttons)
+        {
+            return Task<DialogResult>.Factory.FromAsync(
+                BeginShowMessageBox3(owner, text, caption, buttons, null, null),
+                (Func<IAsyncResult, DialogResult>)EndShowMessageBox3);
+        }
+
+        //public static DialogResult Show(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon);
+        private static readonly Func<Control, string, string, MessageBoxButtons, MessageBoxIcon, DialogResult> showMessageBox4Internal =
+            MessageBox.Show;
+        public static DialogResult ShowMessageBox(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon)
+        {
+            if (owner == null)
+                throw new ArgumentNullException("owner");
+            if (owner.InvokeRequired)
+                return (DialogResult)owner.Invoke(showMessageBox4Internal, owner, text, caption, buttons, icon);
+            else
+                return showMessageBox4Internal.Invoke(owner, text, caption, buttons, icon);
+        }
+        private static readonly Func<Control, string, string, MessageBoxButtons, MessageBoxIcon, DialogResult> showMessageBox4Callback =
+            ShowMessageBox;
+        public static IAsyncResult BeginShowMessageBox4(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, AsyncCallback callback, object state)
+        {
+            return showMessageBox4Callback.BeginInvoke(owner, text, caption, buttons, icon, callback, state);
+        }
+        public static DialogResult EndShowMessageBox4(this Control owner, IAsyncResult result)
+        {
+            return EndShowMessageBox4(result);
+        }
+        public static DialogResult EndShowMessageBox4(IAsyncResult result)
+        {
+            return showMessageBox4Callback.EndInvoke(result);
+        }
+        public static Task<DialogResult> ShowMessageBoxAsync(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon)
+        {
+            return Task<DialogResult>.Factory.FromAsync(
+                BeginShowMessageBox4(owner, text, caption, buttons, icon, null, null),
+                (Func<IAsyncResult, DialogResult>)EndShowMessageBox4);
+        }
+
+        //public static DialogResult Show(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton);
+        private static readonly Func<Control, string, string, MessageBoxButtons, MessageBoxIcon, MessageBoxDefaultButton, DialogResult> showMessageBox5Internal =
+            MessageBox.Show;
+        public static DialogResult ShowMessageBox(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton)
+        {
+            if (owner == null)
+                throw new ArgumentNullException("owner");
+            if (owner.InvokeRequired)
+                return (DialogResult)owner.Invoke(showMessageBox5Internal, owner, text, caption, buttons, icon, defaultButton);
+            else
+                return showMessageBox5Internal.Invoke(owner, text, caption, buttons, icon, defaultButton);
+        }
+        private static readonly Func<Control, string, string, MessageBoxButtons, MessageBoxIcon, MessageBoxDefaultButton, DialogResult> showMessageBox5Callback =
+            ShowMessageBox;
+        public static IAsyncResult BeginShowMessageBox5(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, AsyncCallback callback, object state)
+        {
+            return showMessageBox5Callback.BeginInvoke(owner, text, caption, buttons, icon, defaultButton, callback, state);
+        }
+        public static DialogResult EndShowMessageBox5(this Control owner, IAsyncResult result)
+        {
+            return EndShowMessageBox5(result);
+        }
+        public static DialogResult EndShowMessageBox5(IAsyncResult result)
+        {
+            return showMessageBox5Callback.EndInvoke(result);
+        }
+        public static Task<DialogResult> ShowMessageBoxAsync(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton)
+        {
+            return Task<DialogResult>.Factory.FromAsync(
+                BeginShowMessageBox5(owner, text, caption, buttons, icon, defaultButton, null, null),
+                (Func<IAsyncResult, DialogResult>)EndShowMessageBox5);
+        }
+
+        //public static DialogResult Show(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options);
+        private static readonly Func<Control, string, string, MessageBoxButtons, MessageBoxIcon, MessageBoxDefaultButton, MessageBoxOptions, DialogResult> showMessageBox6Internal =
+            MessageBox.Show;
+        public static DialogResult ShowMessageBox(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        {
+            if (owner == null)
+                throw new ArgumentNullException("owner");
+            if (owner.InvokeRequired)
+                return (DialogResult)owner.Invoke(showMessageBox6Internal, owner, text, caption, buttons, icon, defaultButton, options);
+            else
+                return showMessageBox6Internal.Invoke(owner, text, caption, buttons, icon, defaultButton, options);
+        }
+        private static readonly Func<Control, string, string, MessageBoxButtons, MessageBoxIcon, MessageBoxDefaultButton, MessageBoxOptions, DialogResult> showMessageBox6Callback =
+            ShowMessageBox;
+        public static IAsyncResult BeginShowMessageBox6(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, AsyncCallback callback, object state)
+        {
+            return showMessageBox6Callback.BeginInvoke(owner, text, caption, buttons, icon, defaultButton, options, callback, state);
+        }
+        public static DialogResult EndShowMessageBox6(this Control owner, IAsyncResult result)
+        {
+            return EndShowMessageBox6(result);
+        }
+        public static DialogResult EndShowMessageBox6(IAsyncResult result)
+        {
+            return showMessageBox6Callback.EndInvoke(result);
+        }
+        public static Task<DialogResult> ShowMessageBoxAsync(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        {
+            return Task<DialogResult>.Factory.FromAsync(
+                BeginShowMessageBox6(owner, text, caption, buttons, icon, defaultButton, options, null, null),
+                (Func<IAsyncResult, DialogResult>)EndShowMessageBox6);
+        }
+
+        //public static DialogResult Show(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath);
+        private static readonly Func<Control, string, string, MessageBoxButtons, MessageBoxIcon, MessageBoxDefaultButton, MessageBoxOptions, string, DialogResult> showMessageBox7Internal =
+            MessageBox.Show;
+        public static DialogResult ShowMessageBox(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFile)
+        {
+            if (owner == null)
+                throw new ArgumentNullException("owner");
+            if (owner.InvokeRequired)
+                return (DialogResult)owner.Invoke(showMessageBox7Internal, owner, text, caption, buttons, icon, defaultButton, options, helpFile);
+            else
+                return showMessageBox7Internal.Invoke(owner, text, caption, buttons, icon, defaultButton, options, helpFile);
+        }
+        private static readonly Func<Control, string, string, MessageBoxButtons, MessageBoxIcon, MessageBoxDefaultButton, MessageBoxOptions, string, DialogResult> showMessageBox7Callback =
+            ShowMessageBox;
+        public static IAsyncResult BeginShowMessageBox7(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFile, AsyncCallback callback, object state)
+        {
+            return showMessageBox7Callback.BeginInvoke(owner, text, caption, buttons, icon, defaultButton, options, helpFile, callback, state);
+        }
+        public static DialogResult EndShowMessageBox7(this Control owner, IAsyncResult result)
+        {
+            return EndShowMessageBox7(result);
+        }
+        public static DialogResult EndShowMessageBox7(IAsyncResult result)
+        {
+            return showMessageBox7Callback.EndInvoke(result);
+        }
+        public static Task<DialogResult> ShowMessageBoxAsync(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFile)
+        {
+            return Task<DialogResult>.Factory.FromAsync(
+                BeginShowMessageBox7(owner, text, caption, buttons, icon, defaultButton, options, helpFile, null, null),
+                (Func<IAsyncResult, DialogResult>)EndShowMessageBox7);
+        }
+
+        //public static DialogResult Show(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath, HelpNavigator navigator);
+        private static readonly Func<Control, string, string, MessageBoxButtons, MessageBoxIcon, MessageBoxDefaultButton, MessageBoxOptions, string, HelpNavigator, DialogResult> showMessageBox8Internal =
+            MessageBox.Show;
+        public static DialogResult ShowMessageBox(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFile, HelpNavigator navigator)
+        {
+            if (owner == null)
+                throw new ArgumentNullException("owner");
+            if (owner.InvokeRequired)
+                return (DialogResult)owner.Invoke(showMessageBox8Internal, owner, text, caption, buttons, icon, defaultButton, options, helpFile, navigator);
+            else
+                return showMessageBox8Internal.Invoke(owner, text, caption, buttons, icon, defaultButton, options, helpFile, navigator);
+        }
+        private static readonly Func<Control, string, string, MessageBoxButtons, MessageBoxIcon, MessageBoxDefaultButton, MessageBoxOptions, string, HelpNavigator, DialogResult> showMessageBox8Callback =
+            ShowMessageBox;
+        public static IAsyncResult BeginShowMessageBox8(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFile, HelpNavigator navigator, AsyncCallback callback, object state)
+        {
+            return showMessageBox8Callback.BeginInvoke(owner, text, caption, buttons, icon, defaultButton, options, helpFile, navigator, callback, state);
+        }
+        public static DialogResult EndShowMessageBox8(this Control owner, IAsyncResult result)
+        {
+            return EndShowMessageBox8(result);
+        }
+        public static DialogResult EndShowMessageBox8(IAsyncResult result)
+        {
+            return showMessageBox8Callback.EndInvoke(result);
+        }
+        public static Task<DialogResult> ShowMessageBoxAsync(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFile, HelpNavigator navigator)
+        {
+            return Task<DialogResult>.Factory.FromAsync(
+                BeginShowMessageBox8(owner, text, caption, buttons, icon, defaultButton, options, helpFile, navigator, null, null),
+                (Func<IAsyncResult, DialogResult>)EndShowMessageBox8);
+        }
+
+        //public static DialogResult Show(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath, string keyword);
+        private static readonly Func<Control, string, string, MessageBoxButtons, MessageBoxIcon, MessageBoxDefaultButton, MessageBoxOptions, string, string, DialogResult> showMessageBox9Internal =
+            MessageBox.Show;
+        public static DialogResult ShowMessageBox(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFile, string keyword)
+        {
+            if (owner == null)
+                throw new ArgumentNullException("owner");
+            if (owner.InvokeRequired)
+                return (DialogResult)owner.Invoke(showMessageBox9Internal, owner, text, caption, buttons, icon, defaultButton, options, helpFile, keyword);
+            else
+                return showMessageBox9Internal.Invoke(owner, text, caption, buttons, icon, defaultButton, options, helpFile, keyword);
+        }
+        private static readonly Func<Control, string, string, MessageBoxButtons, MessageBoxIcon, MessageBoxDefaultButton, MessageBoxOptions, string, string, DialogResult> showMessageBox9Callback =
+            ShowMessageBox;
+        public static IAsyncResult BeginShowMessageBox9(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFile, string keyword, AsyncCallback callback, object state)
+        {
+            return showMessageBox9Callback.BeginInvoke(owner, text, caption, buttons, icon, defaultButton, options, helpFile, keyword, callback, state);
+        }
+        public static DialogResult EndShowMessageBox9(this Control owner, IAsyncResult result)
+        {
+            return EndShowMessageBox9(result);
+        }
+        public static DialogResult EndShowMessageBox9(IAsyncResult result)
+        {
+            return showMessageBox9Callback.EndInvoke(result);
+        }
+        public static Task<DialogResult> ShowMessageBoxAsync(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFile, string keyword)
+        {
+            return Task<DialogResult>.Factory.FromAsync(
+                BeginShowMessageBox9(owner, text, caption, buttons, icon, defaultButton, options, helpFile, keyword, null, null),
+                (Func<IAsyncResult, DialogResult>)EndShowMessageBox9);
+        }
+
+        //public static DialogResult Show(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath, HelpNavigator navigator, object param);
+        private static readonly Func<Control, string, string, MessageBoxButtons, MessageBoxIcon, MessageBoxDefaultButton, MessageBoxOptions, string, HelpNavigator, object, DialogResult> showMessageBox10Internal =
+            MessageBox.Show;
+        public static DialogResult ShowMessageBox(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFile, HelpNavigator navigator, object param)
+        {
+            if (owner == null)
+                throw new ArgumentNullException("owner");
+            if (owner.InvokeRequired)
+                return (DialogResult)owner.Invoke(showMessageBox10Internal, owner, text, caption, buttons, icon, defaultButton, options, helpFile, navigator, param);
+            else
+                return showMessageBox10Internal.Invoke(owner, text, caption, buttons, icon, defaultButton, options, helpFile, navigator, param);
+        }
+        private static readonly Func<Control, string, string, MessageBoxButtons, MessageBoxIcon, MessageBoxDefaultButton, MessageBoxOptions, string, HelpNavigator, object, DialogResult> showMessageBox10Callback =
+            ShowMessageBox;
+        public static IAsyncResult BeginShowMessageBox10(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFile, HelpNavigator navigator, object param, AsyncCallback callback, object state)
+        {
+            return showMessageBox10Callback.BeginInvoke(owner, text, caption, buttons, icon, defaultButton, options, helpFile, navigator, param, callback, state);
+        }
+        public static DialogResult EndShowMessageBox10(this Control owner, IAsyncResult result)
+        {
+            return EndShowMessageBox10(result);
+        }
+        public static DialogResult EndShowMessageBox10(IAsyncResult result)
+        {
+            return showMessageBox10Callback.EndInvoke(result);
+        }
+        public static Task<DialogResult> ShowMessageBoxAsync(this Control owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFile, HelpNavigator navigator, object param)
+        {
+            return Task<DialogResult>.Factory.FromAsync(
+                BeginShowMessageBox10(owner, text, caption, buttons, icon, defaultButton, options, helpFile, navigator, param, null, null),
+                (Func<IAsyncResult, DialogResult>)EndShowMessageBox10);
+        }
+    }
 }
