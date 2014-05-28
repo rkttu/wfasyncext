@@ -202,6 +202,29 @@ namespace WindowsFormsAsyncExtension.Test
             Thread.Sleep(TimeSpan.FromSeconds(1d));
             await b.SetParentAsync(testForm);
             Thread.Sleep(TimeSpan.FromSeconds(1d));
+            await b.SetParentAsync(null);
+            Thread.Sleep(TimeSpan.FromSeconds(1d));
+
+            await this.testForm.HideAsync();
+            visibility = await this.testForm.GetVisibleAsync();
+            Assert.That(visibility, Is.False);
+        }
+
+        [Test]
+        public async Task InvokeTest1()
+        {
+            bool visibility;
+
+            await this.testForm.ShowAsync();
+            await this.testForm.ActivateAsync();
+            visibility = await this.testForm.GetVisibleAsync();
+            Assert.That(visibility, Is.True);
+
+            await this.testForm.InvokeAsync(new Action(() =>
+            {
+                this.testForm.Text = "Hello from invokeAsync!";
+            }));
+            Thread.Sleep(TimeSpan.FromSeconds(3d));
 
             await this.testForm.HideAsync();
             visibility = await this.testForm.GetVisibleAsync();
