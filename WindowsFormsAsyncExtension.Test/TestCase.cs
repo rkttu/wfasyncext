@@ -73,6 +73,7 @@ namespace WindowsFormsAsyncExtension.Test
             bool visibility;
 
             await this.testForm.ShowAsync();
+            await this.testForm.ActivateAsync();
             visibility = await this.testForm.GetVisibleAsync();
             Assert.That(visibility, Is.True);
 
@@ -91,6 +92,7 @@ namespace WindowsFormsAsyncExtension.Test
             bool visibility;
 
             await this.testForm.ShowAsync();
+            await this.testForm.ActivateAsync();
             visibility = await this.testForm.GetVisibleAsync();
             Assert.That(visibility, Is.True);
 
@@ -120,6 +122,7 @@ namespace WindowsFormsAsyncExtension.Test
             bool visibility;
 
             await this.testForm.ShowAsync();
+            await this.testForm.ActivateAsync();
             visibility = await this.testForm.GetVisibleAsync();
             Assert.That(visibility, Is.True);
 
@@ -127,6 +130,77 @@ namespace WindowsFormsAsyncExtension.Test
             await this.testForm.AddControlAsync(this.testControl);
             Thread.Sleep(TimeSpan.FromSeconds(1d));
             await this.testForm.RemoveControlAsync(this.testControl);
+            Thread.Sleep(TimeSpan.FromSeconds(1d));
+
+            await this.testForm.HideAsync();
+            visibility = await this.testForm.GetVisibleAsync();
+            Assert.That(visibility, Is.False);
+        }
+
+        [Test]
+        public async Task ControlAddRemoveTest2()
+        {
+            bool visibility;
+
+            await this.testForm.ShowAsync();
+            await this.testForm.ActivateAsync();
+            visibility = await this.testForm.GetVisibleAsync();
+            Assert.That(visibility, Is.True);
+
+            Thread.Sleep(TimeSpan.FromSeconds(1d));
+            Button b = await this.testForm.AddNewControlAsync<Button>();
+            b.Text = "Created by outer thread";
+            b.AutoSize = true;
+            Thread.Sleep(TimeSpan.FromSeconds(1d));
+            await this.testForm.RemoveControlAsync(b);
+            Thread.Sleep(TimeSpan.FromSeconds(1d));
+
+            await this.testForm.HideAsync();
+            visibility = await this.testForm.GetVisibleAsync();
+            Assert.That(visibility, Is.False);
+        }
+
+        [Test]
+        public async Task ControlAddRemoveTest3()
+        {
+            bool visibility;
+
+            await this.testForm.ShowAsync();
+            await this.testForm.ActivateAsync();
+            visibility = await this.testForm.GetVisibleAsync();
+            Assert.That(visibility, Is.True);
+
+            Thread.Sleep(TimeSpan.FromSeconds(1d));
+            Button b = await this.testForm.CreateNewControlAsync<Button>();
+            b.Text = "Created by outer thread";
+            b.AutoSize = true;
+            await testForm.AddControlAsync(b);
+            Thread.Sleep(TimeSpan.FromSeconds(1d));
+            await this.testForm.RemoveControlAsync(b);
+            Thread.Sleep(TimeSpan.FromSeconds(1d));
+
+            await this.testForm.HideAsync();
+            visibility = await this.testForm.GetVisibleAsync();
+            Assert.That(visibility, Is.False);
+        }
+
+        [Test]
+        public async Task ControlAddRemoveTest4()
+        {
+            bool visibility;
+
+            await this.testForm.ShowAsync();
+            await this.testForm.ActivateAsync();
+            visibility = await this.testForm.GetVisibleAsync();
+            Assert.That(visibility, Is.True);
+
+            Thread.Sleep(TimeSpan.FromSeconds(1d));
+            Button b = await this.testForm.CreateNewControlAsync<Button>();
+            b.Text = "Created by outer thread";
+            b.AutoSize = true;
+            await testForm.AddControlAsync(b);
+            Thread.Sleep(TimeSpan.FromSeconds(1d));
+            await b.SetParentAsync(testForm);
             Thread.Sleep(TimeSpan.FromSeconds(1d));
 
             await this.testForm.HideAsync();
