@@ -26,9 +26,15 @@ namespace System.Windows.Forms
 
         public static Thread StartModalForm<TForm>(Func<TForm> configurator)
             where TForm : Form
-        {
-            return StartModalForm<TForm>(configurator, null);
-        }
+        { return StartModalForm<TForm>(configurator, null); }
+
+        public static Thread StartModalForm<TForm>(IWin32Window parent)
+            where TForm : Form
+        { return StartModalForm<TForm>(null, parent); }
+
+        public static Thread StartModalForm<TForm>()
+            where TForm : Form
+        { return StartModalForm<TForm>(null, null); }
 
         public static Thread StartApp<TForm>(Func<TForm> configurator)
             where TForm : Form
@@ -39,12 +45,21 @@ namespace System.Windows.Forms
                 if (configurator != null)
                     form = configurator.Invoke();
                 if (form == default(TForm))
+                {
+                    Application.OleRequired();
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
                     form = Activator.CreateInstance<TForm>();
+                }
                 Application.Run(form);
             });
             t.Start();
             return t;
         }
+
+        public static Thread StartApp<TForm>()
+            where TForm : Form
+        { return StartApp<TForm>(null); }
 
         public static Thread StartAppContext<TAppContext>(Func<TAppContext> configurator)
             where TAppContext : ApplicationContext
@@ -55,11 +70,20 @@ namespace System.Windows.Forms
                 if (configurator != null)
                     appContext = configurator.Invoke();
                 if (appContext == default(TAppContext))
-                    appContext = Activator.CreateInstance<TAppContext>();
+                {
+                    Application.OleRequired();
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    appContext = Activator.CreateInstance(typeof(TAppContext), new Form()) as TAppContext;
+                }
                 Application.Run(appContext);
             });
             t.Start();
             return t;
         }
+
+        public static Thread StartAppContext<TAppContext>()
+            where TAppContext : ApplicationContext
+        { return StartAppContext<TAppContext>(null); }
     }
 }
