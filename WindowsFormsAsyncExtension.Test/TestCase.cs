@@ -27,24 +27,21 @@ namespace WindowsFormsAsyncExtension.Test
                 this.testForm = null;
             }
 
-            this.testThread = new Thread(this.TestThread);
-            this.testThread.Start();
-        }
-
-        private void TestThread()
-        {
-            Application.OleRequired();
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            this.testForm = new Form()
+            this.testThread = FormActivator.StartApp<Form>(() =>
             {
-                Text = DateTime.UtcNow.ToString()
-            };
-            this.testControl = new Button()
-            {
-                Text = "Click Here!"
-            };
-            Application.Run(this.testForm);
+                Application.OleRequired();
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                this.testForm = new Form()
+                {
+                    Text = DateTime.UtcNow.ToString()
+                };
+                this.testControl = new Button()
+                {
+                    Text = "Click Here!"
+                };
+                return this.testForm;
+            });
         }
 
         [TestFixtureTearDown]
