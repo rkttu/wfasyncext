@@ -227,5 +227,28 @@ namespace WindowsFormsAsyncExtension.Test
             visibility = await this.testForm.GetVisibleAsync();
             Assert.That(visibility, Is.False);
         }
+
+        [Test]
+        public async Task AwaitClickTest()
+        {
+            bool visibility;
+
+            await this.testForm.ShowAsync();
+            await this.testForm.ActivateAsync();
+            visibility = await this.testForm.GetVisibleAsync();
+            Assert.That(visibility, Is.True);
+
+            Thread.Sleep(TimeSpan.FromSeconds(1d));
+            Button b = await this.testForm.AddNewControlAsync<Button>();
+            await b.SetTextAsync("Click here to continue!");
+            await b.SetAutoSizeAsync(true);
+            await b.UntilClick();
+            await b.ShowMessageBoxAsync("You clicked the button!");
+            await this.testForm.RemoveControlAsync(b);
+
+            await this.testForm.HideAsync();
+            visibility = await this.testForm.GetVisibleAsync();
+            Assert.That(visibility, Is.False);
+        }
     }
 }
