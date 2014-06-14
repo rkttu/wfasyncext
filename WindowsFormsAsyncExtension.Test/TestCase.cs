@@ -229,7 +229,7 @@ namespace WindowsFormsAsyncExtension.Test
         }
 
         [Test]
-        public async Task AwaitClickTest()
+        public async Task AwaitClickTest1()
         {
             bool visibility;
 

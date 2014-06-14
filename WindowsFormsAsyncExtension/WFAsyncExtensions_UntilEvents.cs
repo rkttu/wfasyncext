@@ -893,7 +893,10 @@ namespace System.Windows.Forms
             control.VisibleChanged += handler;
             return tcs.Task;
         }
+    }
 
+    partial class WFAsyncExtensions
+    {
         public static Task<EventArgs> UntilCanGoBackChanged(this WebBrowser control)
         {
             var tcs = new TaskCompletionSource<EventArgs>();
@@ -1036,7 +1039,10 @@ namespace System.Windows.Forms
             control.StatusTextChanged += handler;
             return tcs.Task;
         }
+    }
 
+    partial class WFAsyncExtensions
+    {
         public static Task<EventArgs> UntilActivated(this Form control)
         {
             var tcs = new TaskCompletionSource<EventArgs>();
@@ -1335,7 +1341,10 @@ namespace System.Windows.Forms
             control.TabStopChanged += handler;
             return tcs.Task;
         }
+    }
 
+    partial class WFAsyncExtensions
+    {
         public static Task<EventArgs> UntilAppearanceChanged(this CheckBox control)
         {
             var tcs = new TaskCompletionSource<EventArgs>();
@@ -1374,7 +1383,10 @@ namespace System.Windows.Forms
             control.CheckStateChanged += handler;
             return tcs.Task;
         }
+    }
 
+    partial class WFAsyncExtensions
+    {
         public static Task<EventArgs> UntilAppearanceChanged(this RadioButton control)
         {
             var tcs = new TaskCompletionSource<EventArgs>();
@@ -1400,7 +1412,7 @@ namespace System.Windows.Forms
             control.CheckedChanged += handler;
             return tcs.Task;
         }
-
-        // todo: listbox, combobox
     }
+
+    // todo: listbox, combobox
 }

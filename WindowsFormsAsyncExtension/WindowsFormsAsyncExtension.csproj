@@ -56,7 +56,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WFAsyncExtensions.cs" />
     <Compile Include="WFAsyncExtensions_Controls.cs" />
-    <Compile Include="WFAsyncExtensions_Events.cs" />
+    <Compile Include="WFAsyncExtensions_OnEvents.cs" />
+    <Compile Include="WFAsyncExtensions_UntilEvents.cs" />
     <Compile Include="WFAsyncExtensions_Startup.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
