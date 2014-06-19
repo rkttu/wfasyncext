@@ -1,18 +1,23 @@
-<?xml version="1.0"?>
-<package >
-  <metadata>
-    <id>wfasyncext</id>
-    <version>1.1.0</version>
-    <title>Windows Forms Async/Cross Thread Extension</title>
-    <authors>rkttu.com</authors>
-    <owners>rkttu.com</owners>
-    <iconUrl>https://raw.githubusercontent.com/rkttu/wfasyncext/master/WindowsFormsAsyncExtension/wfaicon.png</iconUrl>
-    <licenseUrl>https://github.com/rkttu/wfasyncext</licenseUrl>
-    <projectUrl>https://github.com/rkttu/wfasyncext</projectUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>This package provides Windows Forms Async/Cross Thread Extensions.</description>
-    <releaseNotes>Create and manipulate controls from external thread now supported.</releaseNotes>
-    <copyright>Copyright 2014 rkttu.com, All rights reserved.</copyright>
-    <tags>WindowsForms Windows Forms CrossThread Cross Thread Async Extension rkttu.com</tags>
-  </metadata>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>wfasyncext</id>
+        <version>1.1.0</version>
+        <title>Windows Forms Async/Cross Thread Extension</title>
+        <authors>rkttu.com</authors>
+        <owners>rkttu.com</owners>
+        <licenseUrl>https://raw.githubusercontent.com/rkttu/wfasyncext/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/rkttu/wfasyncext</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/rkttu/wfasyncext/master/WindowsFormsAsyncExtension/wfaicon.png</iconUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>This package provides Windows Forms Async/Cross Thread Extensions.</description>
+        <summary>This package provides Windows Forms Async/Cross Thread Extensions.</summary>
+        <releaseNotes>Create and manipulate controls from external thread now supported.</releaseNotes>
+        <copyright>Copyright 2014 rkttu.com, All rights reserved.</copyright>
+        <language />
+        <tags>WinForm WindowsForms Windows Forms CrossThread Cross Thread Async TPL Task Extension rkttu rkttu.com winform windowsforms windows forms crossthread corss thread async tpl task extension rkttu rkttu.com</tags>
+    </metadata>
+    <files>
+        <file src="bin\Release\WindowsFormsExtension.dll" target="lib\net40-client\WindowsFormsExtension.dll" />
+    </files>
 </package>
