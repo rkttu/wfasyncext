@@ -20,6 +20,8 @@ namespace System.Windows.Forms
                     form = Activator.CreateInstance<TForm>();
                 form.ShowDialog(parent);
             });
+            t.IsBackground = false;
+            t.SetApartmentState(ApartmentState.STA);
             t.Start();
             return t;
         }
@@ -53,6 +55,8 @@ namespace System.Windows.Forms
                 }
                 Application.Run(form);
             });
+            t.IsBackground = false;
+            t.SetApartmentState(ApartmentState.STA);
             t.Start();
             return t;
         }
@@ -78,6 +82,8 @@ namespace System.Windows.Forms
                 }
                 Application.Run(appContext);
             });
+            t.IsBackground = false;
+            t.SetApartmentState(ApartmentState.STA);
             t.Start();
             return t;
         }
